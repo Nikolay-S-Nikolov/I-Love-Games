@@ -9,3 +9,6 @@ SoftUni React Course Exercise Workshop
 - [x] Add components Header, Home and Footer
 - [x] Setup React router `npm i react-router`
 - [x] Add BrowserRouter Component in main.jsx
+- [x] Add Routes
+- [x] Add Dynamic Navigation
+- [x] Add component GamesCatalog and show static content
