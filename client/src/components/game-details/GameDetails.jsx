@@ -1,15 +1,30 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router'
+import { Link, useNavigate, useParams } from 'react-router'
 
 export default function GameDetails() {
-    const { gameId } = useParams()
-    const [game, setGame] = useState({})
+    const navigate = useNavigate();
+    const { gameId } = useParams();
+    const [game, setGame] = useState({});
     useEffect(() => {
         fetch(`http://localhost:3030/jsonstore/games/${gameId}`)
             .then(res => res.json())
             .then(setGame)
             .catch(err => alert(err.message));
-    }, [gameId])
+    }, [gameId]);
+
+    const gameDeleteClickHandler = async () => {
+        const isConfirmed = confirm(`Are you sure you want to delete ${game.title}`);
+        if (!isConfirmed) return;
+        try {
+            await fetch(`http://localhost:3030/jsonstore/games/${gameId}`, {
+                method: "DELETE",
+            });
+            navigate('/games');
+        } catch (err) {
+            alert('Cannot delete this game', err.message)
+        };
+
+    };
     return (
         <section id="game-details">
             <h1>Game Details</h1>
@@ -48,7 +63,7 @@ export default function GameDetails() {
                 {/* <!-- Edit/Delete buttons ( Only for creator of this game )  --> */}
                 <div className="buttons">
                     <Link to="#" className="button">Edit</Link>
-                    <Link to="#" className="button">Delete</Link>
+                    <button onClick={gameDeleteClickHandler} className="button">Delete</button>
                 </div>
 
                 <div className="details-comments">
