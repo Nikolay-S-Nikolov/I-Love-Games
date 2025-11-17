@@ -12,3 +12,4 @@ SoftUni React Course Exercise Workshop
 - [x] Add Routes
 - [x] Add Dynamic Navigation
 - [x] Add component GamesCatalog and show static content
+- [x] Show dynamic content in Home and  Catalog page

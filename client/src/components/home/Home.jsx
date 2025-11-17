@@ -1,4 +1,13 @@
+import { useEffect, useState } from "react";
+import GameCard from "../game-card/GameCard.jsx";
+
 export default function Home() {
+    const [games, setGames] = useState([]);
+    useEffect(() => {
+        fetch('http://localhost:3030/jsonstore/games?sortBy=_createdOn%20desc')
+            .then(res => res.json())
+            .then(data => setGames(Object.values(data).slice(0, 3)))
+    }, [])
     return (
         <section id="welcome-world">
 
@@ -13,33 +22,9 @@ export default function Home() {
                 <div id="latest-wrap">
                     {/* <!-- Display div: with information about every game (if any) --> */}
                     <div className="home-container">
-                        <div className="game">
-                            <img src="./images/witcher.png" alt="Elden Ring" />
-                            <div className="details-overlay">
-                                <p className="name">The Witcher 3</p>
-                                <p className="genre">Open World</p>
-                                <button className="details-button">Details</button>
-                            </div>
-                        </div>
-                        <div className="game">
-                            <img src="./images/elden ring.png" alt="Elden Ring" />
-                            <div className="details-overlay">
-                                <p className="name">Elden Ring</p>
-                                <p className="genre">Action RPG</p>
-                                <button className="details-button">Details</button>
-                            </div>
-                        </div>
-                        <div className="game">
-                            <img src="./images/minecraft.png" alt="Minecraft" />
-                            <div className="details-overlay">
-                                <p className="name">Minecraft</p>
-                                <p className="genre">Sandbox</p>
-                                <button className="details-button">Details</button>
-                            </div>
-                            {/* <!-- Display paragraph: If there is no games  --> */}
-                            {/* <!-- <p className="no-articles">No games yet</p> --> */}
-                        </div>
-
+                        {games.map(game => <GameCard key={game._id} {...game} />)}
+                        {/* <!-- Display paragraph: If there is no games  --> */}
+                        {games.length===0 && <p className="no-articles">No games yet</p>}
                     </div>
                 </div>
             </div>
