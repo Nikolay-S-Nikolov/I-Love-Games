@@ -5,6 +5,7 @@ import Footer from "./components/footer/Footer.jsx"
 import Header from "./components/header/Header.jsx"
 import Home from "./components/home/Home.jsx"
 import GamesCatalog from './components/games-catalog/GamesCatalog.jsx'
+import GameDetails from './components/game-details/GameDetails.jsx'
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
             <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/games' element={<GamesCatalog />} />
+                <Route path='/games/:gameId/details' element={<GameDetails />} />
             </Routes>
 
             <Footer />
