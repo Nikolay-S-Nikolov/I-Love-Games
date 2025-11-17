@@ -6,6 +6,7 @@ import Header from "./components/header/Header.jsx"
 import Home from "./components/home/Home.jsx"
 import GamesCatalog from './components/games-catalog/GamesCatalog.jsx'
 import GameDetails from './components/game-details/GameDetails.jsx'
+import GameCreate from './components/game-create/GameCreate.jsx'
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
                 <Route path='/' element={<Home />} />
                 <Route path='/games' element={<GamesCatalog />} />
                 <Route path='/games/:gameId/details' element={<GameDetails />} />
+                <Route path='/games/create' element={<GameCreate />} />
             </Routes>
 
             <Footer />

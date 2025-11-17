@@ -15,3 +15,4 @@ SoftUni React Course Exercise Workshop
 - [x] Show dynamic content in Home and  Catalog page
 - [x] Show dynamic content in Details page
 - [x] Add game delete functionality
+- [x] Add Game Create functionality (useActionState)

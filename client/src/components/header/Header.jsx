@@ -5,7 +5,7 @@ export default function Header() {
         <header>
             {/* <!-- Navigation --> */}
             <nav>
-                <Link className="home" to="/"> <img src="./images/logo.png" alt="logo" /> </Link>
+                <Link className="home" to="/"> <img src="../images/logo.png" alt="logo" /> </Link>
                 <Link to="/games">Catalog</Link>
                 {/* <!-- Logged-in users --> */}
                 <div id="user">
