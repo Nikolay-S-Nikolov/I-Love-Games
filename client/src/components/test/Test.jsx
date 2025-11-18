@@ -17,11 +17,10 @@ async function createGameAction(prevState, formData) {
             const errorText = await response.text();
             throw new Error(errorText || 'Failed to create game');
         }
-
-        // Успех! Връщаме null за error и true за success
+        
         return { error: null, success: true };
     } catch (err) {
-        // Връщаме грешката – React ще я запази в state
+        
         return { error: err.message, success: false };
     }
 }
@@ -29,17 +28,14 @@ async function createGameAction(prevState, formData) {
 export default function GameCreate() {
     const navigate = useNavigate();
 
-    // useActionState връща [state, action, isPending]
     const [state, formAction, isPending] = useActionState(createGameAction, {
         error: null,
         success: false
     });
 
-    // Автоматично пренасочване при успех
     if (state.success) {
-        // Може и с useEffect, но тук е по-чисто
         navigate('/games');
-        return null; // или <Navigate to="/games" replace />
+        return null; 
     }
 
     return (
@@ -47,8 +43,7 @@ export default function GameCreate() {
             <form action={formAction} id="add-new-game">
                 <div className="container">
                     <h1>Add New Game</h1>
-
-                    {/* Показваме грешка, ако има */}
+                    
                     {state.error && (
                         <div className="error-banner">
                             Грешка: {state.error}
@@ -88,7 +83,7 @@ export default function GameCreate() {
                     <button 
                         className="btn submit" 
                         type="submit"
-                        disabled={isPending}  // Автоматично деактивиране
+                        disabled={isPending} 
                     >
                         {isPending ? "Adding Game..." : "ADD GAME"}
                     </button>

@@ -3,7 +3,7 @@ import { useActionState, useEffect } from "react";
 export default function CommentCreate({ gameId, handleCommentAdded }) {
     async function createCommentAction(prevState, formData) {
         const data = Object.fromEntries(formData.entries());
-        if (data.comment.trim() == ''){
+        if (data.comment.trim() == '') {
             return { error: 'The comment can not be empty string', success: false };
         }
         data['gameId'] = gameId;
@@ -31,10 +31,12 @@ export default function CommentCreate({ gameId, handleCommentAdded }) {
     const [state, submitAction, isPending] = useActionState(createCommentAction, { error: null, success: false, newComment: null });
 
     useEffect(() => {
+        const controller = new AbortController();
         if (state.success && state.newComment) {
             handleCommentAdded(state.newComment);
             state.success = false;
         }
+        return () => { controller.abort(); }
     }, [state, handleCommentAdded])
 
 

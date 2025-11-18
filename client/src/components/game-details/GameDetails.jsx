@@ -10,6 +10,7 @@ export default function GameDetails() {
     const [comments, setComments] = useState([]);
 
     useEffect(() => {
+        const controller = new AbortController();
         fetch(`http://localhost:3030/jsonstore/games/${gameId}`)
             .then(res => res.json())
             .then(setGame)
@@ -19,6 +20,8 @@ export default function GameDetails() {
             .then(res => res.json())
             .then(data => setComments(Object.values(data)))
             .catch(err => alert(err.message));
+
+        return () => { controller.abort(); }
     }, [gameId]);
 
     const gameDeleteClickHandler = async () => {

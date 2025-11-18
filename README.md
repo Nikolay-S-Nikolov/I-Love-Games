@@ -19,3 +19,4 @@ SoftUni React Course Exercise Workshop
 - [x] Show comments in game details dynamically
 - [x] Add game comment create functionality 
 - [x] Add game EDIT functionality 
+- [x] Add AbortController in useEffect hooks

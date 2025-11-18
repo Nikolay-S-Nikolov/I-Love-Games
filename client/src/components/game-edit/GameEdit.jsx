@@ -8,16 +8,20 @@ export default function GameEdit() {
     const [state, submitAction, isPending] = useActionState(gameEditAction, { error: null, success: false });
 
     useEffect(() => {
+        const controller = new AbortController();
         fetch(`http://localhost:3030/jsonstore/games/${gameId}`)
             .then(res => res.json())
             .then(setGame)
             .catch(err => alert(err.message));
+        return () => { controller.abort(); }
     }, [gameId])
 
     useEffect(() => {
+        const controller = new AbortController();
         if (state.success) {
             navigate(`/games/${gameId}/details`);
         };
+        return () => { controller.abort(); }
     }, [state, navigate, gameId]);
 
     async function gameEditAction(prevState, formData) {
