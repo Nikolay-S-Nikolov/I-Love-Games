@@ -3,6 +3,9 @@ import { useActionState, useEffect } from "react";
 export default function CommentCreate({ gameId, handleCommentAdded }) {
     async function createCommentAction(prevState, formData) {
         const data = Object.fromEntries(formData.entries());
+        if (data.comment.trim() == ''){
+            return { error: 'The comment can not be empty string', success: false };
+        }
         data['gameId'] = gameId;
 
         try {
@@ -32,7 +35,7 @@ export default function CommentCreate({ gameId, handleCommentAdded }) {
             handleCommentAdded(state.newComment);
             state.success = false;
         }
-    },[state, handleCommentAdded])
+    }, [state, handleCommentAdded])
 
 
 
@@ -40,7 +43,7 @@ export default function CommentCreate({ gameId, handleCommentAdded }) {
         <article className="create-comment">
             <label>Add new comment:</label>
             <form action={submitAction} className="form">
-                {state.error && <div className="error-banner"> Error:{state.error}</div>}
+                {state.error && <div className="error-banner"> Error: {state.error}</div>}
                 <textarea name="comment" placeholder="Comment......"></textarea>
                 <input className="btn submit" type="submit" disabled={isPending} value={isPending ? "Adding Comment" : "Add Comment"} />
             </form>
