@@ -11,15 +11,27 @@ export default function GameDetails() {
 
     useEffect(() => {
         const controller = new AbortController();
-        fetch(`http://localhost:3030/jsonstore/games/${gameId}`)
+        fetch(`http://localhost:3030/jsonstore/games/${gameId}`, {
+            signal: controller.signal
+        })
             .then(res => res.json())
             .then(setGame)
-            .catch(err => alert(err.message));
+            .catch(err => {
+                if (err.name !== 'AbortError') {
+                    alert(err.message);
+                }
+            });
 
-        fetch(`http://localhost:3030/jsonstore/comments?where=gameId%3D%22${gameId}%22`)
+        fetch(`http://localhost:3030/jsonstore/comments?where=gameId%3D%22${gameId}%22`, {
+            signal: controller.signal
+        })
             .then(res => res.json())
             .then(data => setComments(Object.values(data)))
-            .catch(err => alert(err.message));
+            .catch(err => {
+                if (err.name !== 'AbortError') {
+                    alert(err.message);
+                }
+            });
 
         return () => { controller.abort(); }
     }, [gameId]);

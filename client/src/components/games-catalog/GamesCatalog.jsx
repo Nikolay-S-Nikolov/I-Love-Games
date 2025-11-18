@@ -5,10 +5,16 @@ export default function GamesCatalog() {
     const [games, setGames] = useState([])
     useEffect(() => {
         const controller = new AbortController();
-        fetch('http://localhost:3030/jsonstore/games?sortBy=_createdOn%20desc')
+        fetch('http://localhost:3030/jsonstore/games?sortBy=_createdOn%20desc', {
+            signal: controller.signal
+        })
             .then(res => res.json())
             .then(data => setGames(Object.values(data)))
-            .catch(err => alert(err.message));
+            .catch(err => {
+                if (err.name !== 'AbortError') {
+                    alert(err.message);
+                }
+            });
         return () => { controller.abort(); }
     }, []);
 
