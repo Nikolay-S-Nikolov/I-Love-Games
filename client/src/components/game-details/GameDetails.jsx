@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router'
+import Comments from '../comments/Comments.jsx';
 
 export default function GameDetails() {
     const navigate = useNavigate();
@@ -66,19 +67,7 @@ export default function GameDetails() {
                     <button onClick={gameDeleteClickHandler} className="button">Delete</button>
                 </div>
 
-                <div className="details-comments">
-                    <h2>Comments:</h2>
-                    <ul>
-                        <li className="comment">
-                            <p>Content: A masterpiece of world design, though the boss fights are brutal.</p>
-                        </li>
-                        <li className="comment">
-                            <p>Content: Truly feels like a next-gen evolution of the Souls formula!</p>
-                        </li>
-                    </ul>
-                    {/* <!-- Display paragraph: If there are no games in the database --> */}
-                    {/* <!-- <p className="no-comment">No comments.</p> --> */}
-                </div>
+                <Comments gameId={gameId} />
 
             </div>
             {/* <!-- Add Comment ( Only for logged-in users, which is not creators of the current game ) --> */}
