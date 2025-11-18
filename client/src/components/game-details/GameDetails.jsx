@@ -1,15 +1,23 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router'
 import Comments from '../comments/Comments.jsx';
+import CommentCreate from '../comment-create/CommentCreate.jsx';
 
 export default function GameDetails() {
     const navigate = useNavigate();
     const { gameId } = useParams();
     const [game, setGame] = useState({});
+    const [comments, setComments] = useState([]);
+
     useEffect(() => {
         fetch(`http://localhost:3030/jsonstore/games/${gameId}`)
             .then(res => res.json())
             .then(setGame)
+            .catch(err => alert(err.message));
+
+        fetch(`http://localhost:3030/jsonstore/comments?where=gameId%3D%22${gameId}%22`)
+            .then(res => res.json())
+            .then(data => setComments(Object.values(data)))
             .catch(err => alert(err.message));
     }, [gameId]);
 
@@ -26,6 +34,11 @@ export default function GameDetails() {
         };
 
     };
+
+    const handleCommentAdded = (newComment) => {
+        setComments(prev => [...prev, newComment]);
+    };
+
     return (
         <section id="game-details">
             <h1>Game Details</h1>
@@ -67,17 +80,11 @@ export default function GameDetails() {
                     <button onClick={gameDeleteClickHandler} className="button">Delete</button>
                 </div>
 
-                <Comments gameId={gameId} />
+                <Comments comments={comments} />
 
             </div>
             {/* <!-- Add Comment ( Only for logged-in users, which is not creators of the current game ) --> */}
-            <article className="create-comment">
-                <label>Add new comment:</label>
-                <form className="form">
-                    <textarea name="comment" placeholder="Comment......"></textarea>
-                    <input className="btn submit" type="submit" value="Add Comment" />
-                </form>
-            </article>
+            <CommentCreate gameId={gameId} handleCommentAdded={handleCommentAdded} />
         </section>
     );
 };

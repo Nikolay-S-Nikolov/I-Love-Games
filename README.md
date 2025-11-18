@@ -17,3 +17,4 @@ SoftUni React Course Exercise Workshop
 - [x] Add game delete functionality
 - [x] Add Game Create functionality (useActionState)
 - [x] Show comments in game details dynamically
+- [x] Add game comment create functionality 
