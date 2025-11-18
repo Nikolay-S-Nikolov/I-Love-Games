@@ -327,7 +327,7 @@
                 if (responseData !== undefined) {
                     responseData = responseData[token];
                 }
-            }        
+            }
 
             if (query.sortBy && responseData && typeof responseData === 'object') {
                 const [field, direction] = query.sortBy.split(' ');
@@ -341,7 +341,7 @@
 
                     if (typeof valA === 'number' && typeof valB === 'number') {
                         return (valA - valB) * (desc ? -1 : 1);
-                    } else {                        
+                    } else {
                         return String(valA).localeCompare(String(valB)) * (desc ? -1 : 1);
                     }
                 });
@@ -350,7 +350,21 @@
                 for (const [id, obj] of entries) {
                     sortedObject[id] = obj;
                 }
-                return sortedObject;
+                responseData = sortedObject;
+            }
+
+            if (query.where && responseData && typeof responseData === 'object') {
+                const where = query.where;
+                const [field, rawValue] = where.split("=");
+
+                const value = rawValue.replace(/^"|"$/g, "");
+
+                const filtered = Object.entries(responseData)
+                    .filter(([id, obj]) => obj[field] == value);
+
+                const filteredObj = Object.fromEntries(filtered);
+
+                responseData = filteredObj;
             }
 
             return responseData;

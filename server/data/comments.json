@@ -1,0 +1,32 @@
+{
+        "6fad826d-7ee5-409c-aa9b-c0f0b8ccca44": {
+        "gameId": "5c7d8f0e-3a9b-4c2d-9e1f-6a4b3c8d2e7a",
+        "comment": "Amazing quests and atmosphere.",
+        "_id": "6fad826d-7ee5-409c-aa9b-c0f0b8ccca44"
+    },
+    "5b42f336-c95d-461f-9a71-12349390a9dc": {
+        "gameId": "5c7d8f0e-3a9b-4c2d-9e1f-6a4b3c8d2e7a",
+        "comment": "Best RPG experience ever.",
+        "_id": "5b42f336-c95d-461f-9a71-12349390a9dc"
+    },
+    "ac4139e8-94a4-478f-bcbc-0ae50e14726f": {
+        "gameId": "5c7d8f0e-3a9b-4c2d-9e1f-6a4b3c8d2e7a",
+        "comment": "Epic story and stunning world!",
+        "_id": "ac4139e8-94a4-478f-bcbc-0ae50e14726f"
+    },
+        "9cf48a86-37a9-4785-9904-7459e1457fa9": {
+        "gameId": "9f8e7d6c-5b4a-3c2d-1e0f-9g8h7i6j5k4l",
+        "comment": "Vibrant world with intense action.",
+        "_id": "9cf48a86-37a9-4785-9904-7459e1457fa9"
+    },
+    "debb084b-a5dc-4dc4-afaa-b3fbb96608a5": {
+        "gameId": "9f8e7d6c-5b4a-3c2d-1e0f-9g8h7i6j5k4l",
+        "comment": "Great story, awesome characters.",
+        "_id": "debb084b-a5dc-4dc4-afaa-b3fbb96608a5"
+    },
+    "4a1862c7-ced4-45b2-931c-d0525611af17": {
+        "gameId": "9f8e7d6c-5b4a-3c2d-1e0f-9g8h7i6j5k4l",
+        "comment": "Night City feels truly alive.",
+        "_id": "4a1862c7-ced4-45b2-931c-d0525611af17"
+    }
+}
