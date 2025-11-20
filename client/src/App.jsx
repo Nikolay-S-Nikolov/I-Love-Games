@@ -8,6 +8,7 @@ import GamesCatalog from './components/games-catalog/GamesCatalog.jsx'
 import GameDetails from './components/game-details/GameDetails.jsx'
 import GameCreate from './components/game-create/GameCreate.jsx'
 import GameEdit from './components/game-edit/GameEdit.jsx'
+import UserLogin from './components/user-login/UserLogin.jsx'
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
                 <Route path='/games/:gameId/details' element={<GameDetails />} />
                 <Route path='/games/create' element={<GameCreate />} />
                 <Route path='/games/:gameId/edit' element={<GameEdit />} />
+                <Route path='/login' element={<UserLogin />} />
             </Routes>
 
             <Footer />
